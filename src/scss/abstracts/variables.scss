@@ -10,34 +10,38 @@ $headings: (
     'h3-font-size': 24px,
     'h4-font-size': 21px,
     'h5-font-size': 17px,
-    'h6-font-size': 15px
+    'h6-font-size': 15px,
   ),
   'fonts': (
     'headings-font-family': inherit,
-    'headings-color': inherit
-  )
+    'headings-color': inherit,
+  ),
 );
 
 // Global vars for body typography
 $base: (
-  'base-font-sans-serif': unquote("Arial, 'Helvetica Neue', Helvetica, sans-serif"),
-  'base-font-serif': unquote("'Times New Roman', Times, Baskerville, Georgia, serif"),
+  'base-font-sans-serif':
+    unquote("Montserrat, 'Helvetica Neue', Helvetica, sans-serif"),
+  'base-font-serif':
+    unquote("'Times New Roman', Times, Baskerville, Georgia, serif"),
   'base-text-color': #000,
   'base-background-color': #fff,
-  'base-link-color':#39f,
-  'base-font-size': 16px,
+  'base-link-color': #39f,
+  'base-font-size': 14px,
   'base-line-height': 1.2,
-  'base-font-family': unquote("Arial, 'Helvetica Neue', Helvetica, sans-serif"),
-  'base-min-width': 320px
+  'base-font-family':
+    unquote("Montserrat, 'Helvetica Neue', Helvetica, sans-serif"),
+  'base-min-width': 320px,
 );
 
 // Vars for forms
 $forms: (
-  'form-font-family': unquote("Arial, 'Helvetica Neue', Helvetica, sans-serif"),
-  'form-element-padding': unquote("0.4em 0.7em"),
+  'form-font-family':
+    unquote("Montserrat, 'Helvetica Neue', Helvetica, sans-serif"),
+  'form-element-padding': unquote('0.4em 0.7em'),
   'form-element-border-color': #999,
   'form-element-focus-border-color': #000,
-  'placeholder-color': #999
+  'placeholder-color': #999,
 );
 
 // Breakpoints for include media mixin
@@ -45,7 +49,7 @@ $breakpoints: (
   'phone': 480px,
   'tablet': 768px,
   'desktop': 980px,
-  'widescreen': 1200px
+  'widescreen': 1200px,
 );
 
 // Keywords for include media mixin
@@ -56,5 +60,18 @@ $media-expressions: (
   'landscape': '(orientation: landscape)',
   'portrait': '(orientation: portrait)',
   'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
-  'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+  'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)',
+);
+
+// Vars for main colors
+$colors: (
+  'midnight-dark': #2b2d3c,
+  'midnight-medium': #2f3242,
+  'midnight-light': #3a3e52,
+  'blue-dark': #2481ce,
+  'blue-medium': #2196f3,
+  'white': #fff,
+  'grey-dark': #505464,
+  'grey-medium': #9ea3b4,
+  'grey-light': #9ca1b2,
 );
