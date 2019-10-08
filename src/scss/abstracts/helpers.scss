@@ -1,7 +1,12 @@
 // This is the most used helpers.
 //
 // You can remove or add your own helpers in this file.
-
+%btnreset {
+  border: none;
+  background-color: transparent;
+  font: inherit;
+  padding: 0;
+}
 %listreset {
   margin: 0;
   padding: 0;
@@ -59,7 +64,7 @@
 
 .ellipsis {
   white-space: nowrap; // 1
-  text-overflow: ellipsis; // 2 
+  text-overflow: ellipsis; // 2
   overflow: hidden;
 }
 

@@ -4,14 +4,33 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Starter Kit</title>
+    <title>Test Virtus</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&display=swap" rel="stylesheet">
     <link media="all" rel="stylesheet" href="assets/css/vendor.min.css">
     <link media="all" rel="stylesheet" href="assets/css/styles.min.css">
   </head>
 
 <body>
-  <div id="wrapper">
-
+  <div class="main-wrapper">
+    <header class="header">
+      <a href="#" class="header__logo">
+        <img src="assets/images/logo.svg" alt="">
+      </a>
+      <div class="header__user-panel">
+        <button class="header__btn-add" type="button">Add</button>
+        <button class="header__btn-search" type="button">
+          <img src="assets/images/icon-search.svg" alt="">
+        </button>
+        <button class="header__btn-notices header__btn-notices_new-notice" type="button">
+          <img src="assets/images/icon-bell.svg" alt="">
+        </button>
+        <button class="header__btn-user-list">
+          <div class="header__image-holder">
+            <img src="assets/images/user-photo.jpg" alt="">
+          </div>
+        </button>
+      </div>
+    </header>
   </div>
 
   <script src="assets/js/vendor.min.js" defer></script>
