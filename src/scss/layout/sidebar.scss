@@ -1,7 +1,6 @@
 .sidebar {
   position: fixed;
   left: 0;
-  height: 100vh;
   background-color: map-get($colors, 'midnight-medium');
   box-shadow: 0px 1px 80px 0px rgba(0, 0, 0, 0.1);
   @include media('<tablet') {
@@ -14,12 +13,30 @@
   }
   &__link {
     @include animate(opacity);
+    position: relative;
     width: 33px;
     height: 33px;
     display: block;
     margin: 35px;
     &:hover {
       opacity: 0.8;
+    }
+    &:after {
+      @include animate(opacity);
+      content: '';
+      position: absolute;
+      top: -8%;
+      right: -16%;
+      width: 17px;
+      height: 17px;
+      background-color: map-get($colors, 'blue-medium');
+      border: 3px solid map-get($colors, 'midnight-medium');
+      border-radius: 50%;
+      opacity: 0;
+      @include media('<tablet') {
+        width: 11px;
+        height: 11px;
+      }
     }
     @include media('<tablet') {
       width: 25px;
@@ -35,6 +52,11 @@
   &__link_is-active {
     svg {
       fill: map-get($colors, 'white');
+    }
+  }
+  &__link_marked {
+    &:after {
+      opacity: 1;
     }
   }
 }

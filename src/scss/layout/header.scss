@@ -1,5 +1,5 @@
 .header {
-  position: relative;
+  position: fixed;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -54,11 +54,11 @@
   &__btn-sidebar_is-active {
     &:before {
       width: 110%;
-      transform: rotateZ(43deg);
+      transform: rotateZ(42deg);
     }
     &:after {
       width: 110%;
-      transform: rotateZ(-43deg);
+      transform: rotateZ(-42deg);
     }
     span {
       opacity: 0;
@@ -156,8 +156,8 @@
       @include animate(opacity);
       content: '';
       position: absolute;
-      top: 2px;
-      right: 2px;
+      top: 5%;
+      right: 5%;
       width: 17px;
       height: 17px;
       background-color: map-get($colors, 'blue-medium');
@@ -178,7 +178,7 @@
       margin-left: 0;
     }
   }
-  &__btn-notices_new-notice {
+  &__btn-notices_marked {
     &:after {
       opacity: 1;
     }
