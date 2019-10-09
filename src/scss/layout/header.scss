@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   align-items: center;
   background-color: map-get($colors, 'midnight-medium');
-  box-shadow: 0px 3px 80px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 80px 0px rgba(0, 0, 0, 0.1);
   padding: 20px 30px;
   @include media('<tablet') {
     padding: 10px 15px;
@@ -18,6 +18,7 @@
     }
     &:before,
     &:after {
+      @include animate(transform width);
       content: '';
       position: absolute;
       left: 0;
@@ -43,10 +44,24 @@
       margin: 0 auto 10px 0;
     }
     span {
+      @include animate(opacity);
       height: 2px;
       width: 100%;
       display: block;
       background-color: map-get($colors, 'white');
+    }
+  }
+  &__btn-sidebar_is-active {
+    &:before {
+      width: 110%;
+      transform: rotateZ(43deg);
+    }
+    &:after {
+      width: 110%;
+      transform: rotateZ(-43deg);
+    }
+    span {
+      opacity: 0;
     }
   }
   &__logo {
@@ -114,6 +129,9 @@
     height: 36px;
     flex-shrink: 0;
     margin-left: 50px;
+    &:hover {
+      opacity: 0.8;
+    }
     @include media('<tablet') {
       width: 24px;
       height: 24px;
