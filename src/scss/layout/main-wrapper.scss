@@ -1,4 +1,6 @@
 .main-wrapper {
-  min-height: 200vh;
+  height: 100vh;
   background-color: map-get($colors, 'midnight-dark');
+  padding-left: 103px;
+  padding-top: 96px;
 }
