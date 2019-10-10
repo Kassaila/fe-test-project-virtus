@@ -4,5 +4,5 @@
 
 module.exports = [
   './node_modules/jquery/dist/jquery.js',
-  './node_modules/echarts/dist/echarts.min.js'
+  './node_modules/echarts/dist/echarts.common.min.js'
 ];
