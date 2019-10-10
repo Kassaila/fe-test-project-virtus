@@ -1,7 +1,8 @@
 {
   "globals": {
     "jQuery": true,
-    "$": true
+    "$": true,
+    "echarts": true
   },
   "env": {
     "browser": true,
