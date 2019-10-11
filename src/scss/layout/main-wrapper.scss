@@ -1,6 +1,10 @@
 .main-wrapper {
+  position: relative;
   height: 100vh;
   background-color: map-get($colors, 'midnight-dark');
   padding-left: 103px;
   padding-top: 96px;
+  @include media('<=widescreen') {
+
+  }
 }

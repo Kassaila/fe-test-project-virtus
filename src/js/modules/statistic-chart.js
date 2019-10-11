@@ -1,15 +1,24 @@
 const statisticChart = () => {
   const chartBlock = document.querySelector('.statistic-chart');
-  const dataObj = [
+  const dataArr = [
     ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
     [1200, 603, 593],
     [3455, 3453, 492],
-    [533, 54332, 2345],
+    [533, 4432, 2345],
     [3455, 5546, 234],
     [3453, 2342, 3245],
     [435, 3242, 345],
     [345, 3424, 2345],
   ];
+  const dataSum = [];
+
+  (() => {
+    for (let i = 1; i < dataArr.length; i += 1) {
+      dataSum.push(dataArr[i].reduce((acum, el) => acum + el));
+    }
+    return dataSum;
+  })();
+
   const init = () => {
     const option = {
       tooltip: {
@@ -38,7 +47,7 @@ const statisticChart = () => {
       ],
       xAxis: {
         type: 'category',
-        data: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+        data: dataArr[0],
         splitLine: {
           show: true,
           lineStyle: {
@@ -71,14 +80,15 @@ const statisticChart = () => {
         type: 'value',
         show: false,
         min: 0,
-        max: 80,
+        max: Math.max(dataSum),
       },
       series: [
         {
-          name: 'VALUE',
+          name: 'SUM',
+          id: 'SUM',
           type: 'line',
           smooth: true,
-          data: [20, 30, 20, 25, 30, 20, 25],
+          data: dataSum,
           lineStyle: {
             color: '#2196f3',
             width: 4,
@@ -108,7 +118,7 @@ const statisticChart = () => {
           name: 'VIEWS',
           id: 'VIEWS',
           type: 'pie',
-          radius: [40, 35],
+          radius: [45, 40],
           center: [80, 80],
           avoidLabelOverlap: false,
           hoverOffset: 0,
@@ -121,7 +131,7 @@ const statisticChart = () => {
             rich: {
               d: {
                 fontSize: 22,
-                color: '#fff',
+                color: '#2196f3',
                 padding: [0, 0, -5, 0],
               },
               c: {
@@ -139,11 +149,11 @@ const statisticChart = () => {
           },
           data: [
             {
-              value: 75,
+              value: 0,
               name: 'percent',
             },
             {
-              value: 25,
+              value: 0,
               name: 'empty',
               label: {
                 show: false,
@@ -158,7 +168,7 @@ const statisticChart = () => {
           name: 'VISITORS',
           id: 'VISITORS',
           type: 'pie',
-          radius: [40, 35],
+          radius: [45, 40],
           center: [330, 80],
           avoidLabelOverlap: false,
           hoverOffset: 0,
@@ -171,7 +181,7 @@ const statisticChart = () => {
             rich: {
               d: {
                 fontSize: 22,
-                color: '#fff',
+                color: '#2196f3',
                 padding: [0, 0, -5, 0],
               },
               c: {
@@ -189,11 +199,11 @@ const statisticChart = () => {
           },
           data: [
             {
-              value: 75,
+              value: 0,
               name: 'percent',
             },
             {
-              value: 25,
+              value: 0,
               name: 'empty',
               label: {
                 show: false,
@@ -208,7 +218,7 @@ const statisticChart = () => {
           name: 'IMPRESSIONS',
           id: 'IMPRESSIONS',
           type: 'pie',
-          radius: [40, 35],
+          radius: [45, 40],
           center: [560, 80],
           avoidLabelOverlap: false,
           hoverOffset: 0,
@@ -221,7 +231,7 @@ const statisticChart = () => {
             rich: {
               d: {
                 fontSize: 22,
-                color: '#fff',
+                color: '#2196f3',
                 padding: [0, 0, -5, 0],
               },
               c: {
@@ -239,11 +249,11 @@ const statisticChart = () => {
           },
           data: [
             {
-              value: 75,
+              value: 0,
               name: 'percent',
             },
             {
-              value: 25,
+              value: 0,
               name: 'empty',
               label: {
                 show: false,
@@ -258,35 +268,71 @@ const statisticChart = () => {
     };
 
     const statEchart = echarts.init(chartBlock);
+    let currentDay;
 
     statEchart.setOption(option);
 
     window.onresize = () => statEchart.resize();
-    let currentDay;
+
     statEchart.on('updateAxisPointer', (event) => {
       const xAxisInfo = event.axesInfo[0];
-      if (xAxisInfo && currentDay !== xAxisInfo.value+1) {
+      if (xAxisInfo && currentDay !== xAxisInfo.value + 1) {
         currentDay = xAxisInfo.value + 1;
-        console.log(currentDay, dataObj[currentDay]);
         statEchart.setOption({
-          series: [{
+          series: [
+            {
+              id: 'VIEWS',
+              data: [
+                {
+                  value: dataArr[currentDay][0],
+                },
+                {
+                  value: dataSum[currentDay - 1],
+                  label: {
+                    show: false,
+                  },
+                  labelLine: {
+                    show: false,
+                  },
+                },
+              ],
+            },
+            {
+              id: 'VISITORS',
+              data: [
+                {
+                  value: dataArr[currentDay][1],
+                },
+                {
+                  value: dataSum[currentDay - 1],
+                  label: {
+                    show: false,
+                  },
+                  labelLine: {
+                    show: false,
+                  },
+                },
+              ],
+            },
+            {
               id: 'IMPRESSIONS',
-              data: [{
-                value: dataObj[currentDay][2]
-              },{
-                value: dataObj[currentDay][1],
-                label: {
-                  show: false,
+              data: [
+                {
+                  value: dataArr[currentDay][2],
                 },
-                labelLine: {
-                  show: false,
+                {
+                  value: dataSum[currentDay - 1],
+                  label: {
+                    show: false,
+                  },
+                  labelLine: {
+                    show: false,
+                  },
                 },
-              },],
-
-
-          }]
-      });
-
+              ],
+            },
+          ],
+        });
       }
     });
   };

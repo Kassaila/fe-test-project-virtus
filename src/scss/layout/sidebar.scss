@@ -4,7 +4,7 @@
   background-color: map-get($colors, 'midnight-medium');
   box-shadow: 0px 1px 80px 0px rgba(0, 0, 0, 0.1);
   z-index: 10;
-  @include media('<tablet') {
+  @include media('<=tablet') {
     display: none;
   }
   &__list {
@@ -34,12 +34,12 @@
       border: 3px solid map-get($colors, 'midnight-medium');
       border-radius: 50%;
       opacity: 0;
-      @include media('<tablet') {
+      @include media('<=tablet') {
         width: 11px;
         height: 11px;
       }
     }
-    @include media('<tablet') {
+    @include media('<=tablet') {
       width: 25px;
       height: 25px;
       margin: 15px;
