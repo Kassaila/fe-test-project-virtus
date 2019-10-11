@@ -21,9 +21,6 @@ const statisticChart = () => {
 
   const init = () => {
     const option = {
-      tooltip: {
-        trigger: 'none',
-      },
       color: ['#2196f3', '#505464'],
       grid: {
         left: 0,
@@ -31,11 +28,11 @@ const statisticChart = () => {
         bottom: 0,
         width: '100%',
         height: '60%',
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'none',
-          },
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'none',
         },
       },
       dataZoom: [
@@ -272,7 +269,7 @@ const statisticChart = () => {
 
     statEchart.setOption(option);
 
-    window.onresize = () => statEchart.resize();
+    window.addEventListener('resize', () => statEchart.resize());
 
     statEchart.on('updateAxisPointer', (event) => {
       const xAxisInfo = event.axesInfo[0];

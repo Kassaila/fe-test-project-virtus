@@ -4,11 +4,13 @@
 // Feel free with using ES6 here.
 import sidebar from './modules/sidebar';
 import statisticChart from './modules/statistic-chart';
+import salesChart from './modules/sales-chart';
 
 (($) => {
   // When DOM is ready
   $(() => {
     sidebar.init();
     statisticChart.init();
+    salesChart.init();
   });
 })(jQuery);
