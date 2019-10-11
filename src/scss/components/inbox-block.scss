@@ -1,4 +1,65 @@
 .inbox-block {
-  background-color: map-get($colors , 'midnight-medium');
+  background-color: map-get($colors, 'midnight-medium');
   box-shadow: 0px 3px 40px 0 rgba(23, 24, 32, 0.2);
+  &__head {
+    background-color: map-get($colors, 'midnight-light');
+    padding: 30px;
+  }
+  &__title {
+    font: 24px map-get($base, 'base-font-family');
+    letter-spacing: 0.5px;
+    text-align: center;
+    color: map-get($colors, 'white');
+    margin: 0;
+  }
+}
+.message-block {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid map-get($colors, 'grey-dark');
+  padding: 24px 20px 20px;
+  &__photo-holder {
+    flex-shrink: 0;
+    overflow: hidden;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    border-radius: 50%;
+    margin-right: 20px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  &__sender-name {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.32px;
+    color: map-get($colors, 'white');
+    margin: 0 0 5px;
+  }
+  &__date {
+    letter-spacing: 0.28px;
+    color: map-get($colors, 'grey-light');
+    margin: 0 0 5px;
+  }
+  &__text {
+    width: 100%;
+    line-height: 2;
+    letter-spacing: 0.28px;
+    color: map-get($colors, 'grey-light');
+  }
+
+  &_new {
+    .message-block__date {
+      color: map-get($colors, 'blue-medium');
+    }
+  }
 }
