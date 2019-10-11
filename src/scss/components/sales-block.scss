@@ -1,8 +1,33 @@
 .sales-block {
+  position: relative;
   background-color: map-get($colors, 'midnight-medium');
   box-shadow: 0px 3px 40px 0 rgba(23, 24, 32, 0.2);
 }
 .sales-chart {
+  position: relative;
   width: 100%;
   height: 100%;
+  z-index: 1;
+  &__head {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px 30px;
+    z-index: 2;
+  }
+  &__title {
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    color: map-get($colors, 'white');
+    margin: 0 auto 0 0;
+  }
+  &__text {
+    font-size: 16px;
+    letter-spacing: 0.32px;
+    color: map-get($colors, 'grey-medium');
+    margin-right: 10px;
+  }
 }

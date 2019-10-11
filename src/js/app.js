@@ -5,6 +5,7 @@
 import sidebar from './modules/sidebar';
 import statisticChart from './modules/statistic-chart';
 import salesChart from './modules/sales-chart';
+import customSelect from './modules/custom-select';
 
 (($) => {
   // When DOM is ready
@@ -12,5 +13,6 @@ import salesChart from './modules/sales-chart';
     sidebar.init();
     statisticChart.init();
     salesChart.init();
+    customSelect.init();
   });
 })(jQuery);

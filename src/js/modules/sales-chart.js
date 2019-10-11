@@ -4,15 +4,6 @@ const salesChart = () => {
   const init = () => {
     const option = {
       color: ['#2196f3', '#505464'],
-      title: {
-        text: 'Sales report',
-        top: '8%',
-        left: '5%',
-        textStyle: {
-          fontSize: 24,
-          color: '#fff',
-        },
-      },
       grid: {
         left: '5%',
         right: '5%',
