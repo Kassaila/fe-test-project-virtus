@@ -20,7 +20,7 @@
     overflow-y: scroll;
   }
 }
-.message-block {
+.message-element {
   position: relative;
   display: flex;
   align-items: center;
@@ -65,7 +65,7 @@
   }
 
   &_new {
-    .message-block__date {
+    .message-element__date {
       color: map-get($colors, 'blue-medium');
     }
   }

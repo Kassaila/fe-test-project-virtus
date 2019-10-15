@@ -1,4 +1,105 @@
 .your-projects-block {
-  background-color: map-get($colors , 'midnight-medium');
+  background-color: map-get($colors, 'midnight-medium');
   box-shadow: 0px 3px 40px 0 rgba(23, 24, 32, 0.2);
+  &__head {
+    background-color: map-get($colors, 'midnight-light');
+    padding: 30px;
+  }
+  &__title {
+    font: 700 24px map-get($base, 'base-font-family');
+    letter-spacing: 0.5px;
+    text-align: center;
+    color: map-get($colors, 'white');
+    margin: 0;
+  }
+  &__wrapper {
+    height: calc(100% - 90px);
+    overflow-y: scroll;
+  }
+}
+.project-element {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid map-get($colors, 'grey-dark');
+  padding: 24px 20px 20px;
+  &__photo-holder {
+    flex-shrink: 0;
+    overflow: hidden;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    border-radius: 50%;
+    margin-right: 20px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  &__title {
+    font-size: 16px;
+    letter-spacing: 0.32px;
+    color: map-get($colors, 'white');
+  }
+  &__text {
+    width: 100%;
+    line-height: 2;
+    letter-spacing: 0.28px;
+    color: map-get($colors, 'grey-light');
+  }
+  &__price {
+    position: relative;
+    padding-left: 15px;
+    margin-left: 10px;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 5px;
+      height: 5px;
+      background-color: map-get($colors, 'grey-light');
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  &__menu {
+    @include animate(background-color);
+    @extend %btnreset;
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    &:hover {
+      background-color: map-get($colors, 'midnight-light');
+    }
+    &:before,
+    &:after,
+    span {
+      position: absolute;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      background-color: map-get($colors, 'grey-light');
+      border-radius: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+    &:before {
+      content: '';
+      top: 25%;
+    }
+    &:after {
+      content: '';
+      top: 75%;
+    }
+    span {
+      top: 50%;
+    }
+  }
 }

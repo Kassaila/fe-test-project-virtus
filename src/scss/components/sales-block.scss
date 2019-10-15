@@ -19,7 +19,7 @@
     z-index: 2;
   }
   &__title {
-    font: 24px map-get($base, 'base-font-family');
+    font:700 24px map-get($base, 'base-font-family');
     letter-spacing: 0.5px;
     color: map-get($colors, 'white');
     margin: 0 auto 0 0;
