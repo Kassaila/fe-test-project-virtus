@@ -17,6 +17,7 @@
     color: map-get($colors, 'blue-medium');
   }
   &__wrapper {
+    position: relative;
     height: calc(100% - 90px);
     overflow-y: scroll;
   }

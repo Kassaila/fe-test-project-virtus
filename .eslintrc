@@ -2,7 +2,8 @@
   "globals": {
     "jQuery": true,
     "$": true,
-    "echarts": true
+    "echarts": true,
+    "PerfectScrollbar": true
   },
   "env": {
     "browser": true,
