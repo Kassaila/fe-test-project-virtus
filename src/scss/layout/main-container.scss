@@ -2,11 +2,29 @@
   width: 100%;
   height: 100%;
   display: grid;
+  grid-template-areas:
+    'statistic statistic projects '
+    'sales inbox datepicker';
   grid-template-columns: 2fr 1.125fr 1.125fr;
   grid-template-rows: minmax(50%, 1fr) 45%;
   grid-gap: 20px;
   padding: 60px 20px 20px 60px;
-  @include media('<=widescreen') {
+  @include media('<=ultrawidescreen') {
+    grid-template-areas:
+      'statistic statistic statistic'
+      'sales sales projects'
+      'inbox inbox datepicker';
+    grid-template-columns: 1fr 1fr 1.5fr;
+    grid-template-rows: minmax(30%, 1fr) 30% 30%;
     padding: 20px;
+  }
+  @include media('<=desktop') {
+    grid-template-areas:
+      'statistic statistic'
+      'sales sales'
+      'projects datepicker'
+      'inbox inbox';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: minmax(25%, 1fr) 25% 25% 20%;
   }
 }

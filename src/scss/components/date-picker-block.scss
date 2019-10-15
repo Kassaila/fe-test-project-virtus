@@ -1,4 +1,5 @@
 .date-picker-block {
+  grid-area: datepicker;
   background-color: map-get($colors, 'midnight-medium');
   box-shadow: 0px 3px 40px 0 rgba(23, 24, 32, 0.2);
   &__date-picker {
@@ -47,7 +48,7 @@
       }
       &--days,
       &--months,
-      &--years  {
+      &--years {
         width: 100%;
       }
       &--days-names {

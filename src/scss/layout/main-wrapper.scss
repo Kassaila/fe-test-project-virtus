@@ -4,7 +4,12 @@
   background-color: map-get($colors, 'midnight-dark');
   padding-left: 103px;
   padding-top: 96px;
-  @include media('<=widescreen') {
-
+  @include media('<=ultrawidescreen') {
+    height: 120vh;
+  }
+  @include media('<=desktop') {
+    height: 150vh;
+    padding-left: 0;
+    padding-top: 60px;
   }
 }
