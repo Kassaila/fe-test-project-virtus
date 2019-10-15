@@ -6,6 +6,7 @@ import sidebar from './modules/sidebar';
 import statisticChart from './modules/statistic-chart';
 import salesChart from './modules/sales-chart';
 import customSelect from './modules/custom-select';
+import datePicker from './modules/date-picker';
 
 (($) => {
   // When DOM is ready
@@ -14,5 +15,6 @@ import customSelect from './modules/custom-select';
     statisticChart.init();
     salesChart.init();
     customSelect.init();
+    datePicker.init();
   });
 })(jQuery);

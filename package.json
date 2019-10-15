@@ -60,6 +60,7 @@
     "start": "gulp"
   },
   "dependencies": {
+    "air-datepicker": "^2.2.3",
     "echarts": "^4.3.0",
     "include-media": "^1.4.9",
     "jquery": "^3.3.1",

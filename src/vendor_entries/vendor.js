@@ -4,5 +4,6 @@
 
 module.exports = [
   './node_modules/jquery/dist/jquery.js',
-  './node_modules/echarts/dist/echarts.common.min.js'
+  './node_modules/echarts/dist/echarts.common.min.js',
+  './node_modules/air-datepicker/dist/js/datepicker.min.js'
 ];
