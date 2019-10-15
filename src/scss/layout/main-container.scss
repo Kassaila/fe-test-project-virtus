@@ -3,7 +3,7 @@
   height: 100%;
   display: grid;
   grid-template-columns: 2fr 1.125fr 1.125fr;
-  grid-template-rows: 1.2fr 1fr;
+  grid-template-rows: minmax(50%, 1fr) 45%;
   grid-gap: 20px;
   padding: 60px 20px 20px 60px;
   @include media('<=widescreen') {

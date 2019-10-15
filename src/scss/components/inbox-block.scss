@@ -6,11 +6,18 @@
     padding: 30px;
   }
   &__title {
-    font: 24px map-get($base, 'base-font-family');
+    font: 700 24px map-get($base, 'base-font-family');
     letter-spacing: 0.5px;
     text-align: center;
     color: map-get($colors, 'white');
     margin: 0;
+  }
+  &__number {
+    color: map-get($colors, 'blue-medium');
+  }
+  &__wrapper {
+    height: calc(100% - 90px);
+    overflow-y: scroll;
   }
 }
 .message-block {
