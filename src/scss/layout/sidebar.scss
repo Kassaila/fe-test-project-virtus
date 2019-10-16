@@ -12,7 +12,7 @@
     height: calc(100vh - 60px);
     display: none;
   }
-  @include media('<=tablet') {
+  @include media('<=phone') {
     top: 94px;
     height: calc(100vh - 94px);
   }

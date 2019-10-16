@@ -86,10 +86,12 @@
   &__menu {
     @include animate(background-color);
     @extend %btnreset;
+    flex-shrink: 0;
     position: relative;
     width: 28px;
     height: 28px;
     border-radius: 50%;
+    margin-left: 5px;
     &:hover {
       background-color: map-get($colors, 'midnight-light');
     }
