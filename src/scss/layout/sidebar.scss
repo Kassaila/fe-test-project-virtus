@@ -16,6 +16,7 @@
     top: 94px;
     height: calc(100vh - 94px);
   }
+
   &__list {
     @extend %listreset;
     display: flex;
@@ -27,7 +28,7 @@
     width: 33px;
     height: 33px;
     display: block;
-    margin: 35px;
+    margin: 32px 35px;
     &:hover {
       opacity: 0.8;
     }

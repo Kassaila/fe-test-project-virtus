@@ -1,4 +1,6 @@
 const customSelect = () => {
+  if (!$('.custom-select')) return false;
+
   const init = () => {
     $('.custom-select').each(function () {
       const $this = $(this);

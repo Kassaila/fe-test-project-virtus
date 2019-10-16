@@ -2,6 +2,8 @@ const salesChart = () => {
   const chartBlock = document.querySelector('.sales-chart');
 
   const init = () => {
+    if (!$('.sales-chart').length) return false;
+
     const option = {
       baseOption: {
         color: ['#2196f3', '#505464'],

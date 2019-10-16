@@ -1,6 +1,8 @@
 const datePicker = () => {
   const $picker = $('.date-picker-block__date-picker');
 
+  if (!$picker) return false;
+
   const init = () => {
     $picker.datepicker({
       inline: true,

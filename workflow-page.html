@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Virtus</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link media="all" rel="stylesheet" href="assets/css/vendor.min.css">
+  <link media="all" rel="stylesheet" href="assets/css/styles.min.css">
+</head>
+
+<body>
+  <div class="main-wrapper">
+    <header class="header">
+      <button class="header__btn-sidebar">
+        <span></span>
+      </button>
+      <a href="#" class="header__logo">
+        <img src="assets/images/logo.svg" alt="">
+      </a>
+      <div class="header__user-panel">
+        <button class="header__btn-add" type="button">Add</button>
+        <button class="header__btn-search" type="button">
+          <img src="assets/images/icon-search.svg" alt="">
+        </button>
+        <button class="header__btn-notices header__btn-notices_marked" type="button">
+          <img src="assets/images/icon-bell.svg" alt="">
+        </button>
+        <button class="header__btn-user-list">
+          <div class="header__image-holder">
+            <img src="assets/images/user-photo.jpg" alt="">
+          </div>
+        </button>
+      </div>
+    </header>
+    <nav class="sidebar">
+      <ul class="sidebar__list">
+        <li>
+          <a href="#" class="sidebar__link sidebar__link_is-active">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24"
+              height="24" viewBox="0 0 24 24">
+              <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="workflow-page.html" class="sidebar__link">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24"
+              height="24" viewBox="0 0 24 24">
+              <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidebar__link">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24"
+              height="24" viewBox="0 0 24 24">
+              <path d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidebar__link sidebar__link_marked">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24"
+              height="24" viewBox="0 0 24 24">
+              <path
+                d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidebar__link">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24"
+              height="24" viewBox="0 0 24 24">
+              <path
+                d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z" />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="workflow-head">
+      <span class="workflow-head__quantity">All Projects (358)</span>
+      <span class="workflow-head__title">Workflow</span>
+      <span class="workflow-head__title-select">Show projects:</span>
+      <select class="workflow-head__select custom-select">
+        <option value="year">All</option>
+        <option value="month">Design</option>
+        <option value="week">Testing</option>
+      </select>
+    </div>
+    <div class="workflow-container">
+
+    </div>
+  </div>
+
+  <script src="assets/js/vendor.min.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</body>
+
+</html>

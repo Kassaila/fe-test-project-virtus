@@ -1,5 +1,6 @@
 const statisticChart = () => {
   const chartBlock = document.querySelector('.statistic-chart');
+
   const dataArr = [
     ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
     [1200, 603, 593],
@@ -20,6 +21,8 @@ const statisticChart = () => {
   })();
 
   const init = () => {
+    if (!$('.statistic-chart').length) return false;
+
     const option = {
       baseOption: {
         calculable: true,
