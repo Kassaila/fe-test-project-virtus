@@ -5,6 +5,9 @@
   &__head {
     background-color: map-get($colors, 'midnight-light');
     padding: 30px;
+    @include media('<=tablet') {
+      padding: 15px;
+    }
   }
   &__title {
     font: 700 24px map-get($base, 'base-font-family');
@@ -12,6 +15,9 @@
     text-align: center;
     color: map-get($colors, 'white');
     margin: 0;
+    @include media('<=tablet') {
+      font-size: 18px;
+    }
   }
   &__number {
     color: map-get($colors, 'blue-medium');
@@ -20,6 +26,9 @@
     position: relative;
     height: calc(100% - 90px);
     overflow-y: scroll;
+    @include media('<=tablet') {
+      height: calc(100% - 52px);
+    }
   }
 }
 .message-element {
@@ -28,6 +37,9 @@
   align-items: center;
   border-bottom: 1px solid map-get($colors, 'grey-dark');
   padding: 24px 20px 20px;
+  @include media('<=tablet') {
+    padding: 15px;
+  }
   &__photo-holder {
     flex-shrink: 0;
     overflow: hidden;

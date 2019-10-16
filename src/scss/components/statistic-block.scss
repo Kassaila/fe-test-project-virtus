@@ -1,5 +1,6 @@
 .statistic-block {
   grid-area: statistic;
+  overflow: hidden;
   background-color: map-get($colors, 'midnight-medium');
   box-shadow: 0px 3px 40px 0 rgba(23, 24, 32, 0.2);
 }

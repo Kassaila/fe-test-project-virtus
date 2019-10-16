@@ -7,8 +7,6 @@ import statisticChart from './modules/statistic-chart';
 import salesChart from './modules/sales-chart';
 import customSelect from './modules/custom-select';
 import datePicker from './modules/date-picker';
-import customscrollInbox from './modules/customscroll-inbox';
-import customscrollProjects from './modules/customscroll-projects';
 
 (($) => {
   // When DOM is ready
@@ -18,7 +16,5 @@ import customscrollProjects from './modules/customscroll-projects';
     salesChart.init();
     customSelect.init();
     datePicker.init();
-    customscrollInbox.init();
-    customscrollProjects.init();
   });
 })(jQuery);

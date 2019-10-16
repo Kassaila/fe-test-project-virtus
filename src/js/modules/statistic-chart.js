@@ -21,245 +21,381 @@ const statisticChart = () => {
 
   const init = () => {
     const option = {
-      color: ['#2196f3', '#505464'],
-      grid: {
-        left: 0,
-        right: 0,
-        bottom: 0,
-        width: '100%',
-        height: '60%',
-      },
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'none',
+      baseOption: {
+        calculable: true,
+        color: ['#2196f3', '#505464'],
+        grid: {
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '60%',
         },
-      },
-      dataZoom: [
-        {
-          type: 'inside',
-          start: 0,
-          end: 70,
-        },
-      ],
-      xAxis: {
-        type: 'category',
-        data: dataArr[0],
-        splitLine: {
-          show: true,
-          lineStyle: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              {
-                offset: 1,
-                color: '#9ea3b4',
-              },
-              {
-                offset: 0,
-                color: 'rgba(158, 163, 180, 0.1)',
-              },
-            ]),
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'none',
           },
         },
-        axisLine: {
-          show: false,
-        },
-        axisTick: {
-          show: false,
-        },
-        axisLabel: {
-          inside: true,
-          fontSize: 16,
-          color: '#fff',
-          margin: 20,
-        },
-      },
-      yAxis: {
-        type: 'value',
-        show: false,
-        min: 0,
-        max: Math.max(dataSum),
-      },
-      series: [
-        {
-          name: 'SUM',
-          id: 'SUM',
-          type: 'line',
-          smooth: true,
-          data: dataSum,
-          lineStyle: {
-            color: '#2196f3',
-            width: 4,
+        dataZoom: [
+          {
+            type: 'inside',
+            start: 0,
+            end: 70,
           },
-          symbolSize: 12,
-          itemStyle: {
-            color: '#fff',
-            borderWidth: 4,
-            borderColor: '#2196f3',
-          },
-          areaStyle: {
-            normal: {
+        ],
+        xAxis: {
+          type: 'category',
+          data: dataArr[0],
+          splitLine: {
+            show: true,
+            lineStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 {
-                  offset: 0,
-                  color: '#2196f3',
+                  offset: 1,
+                  color: '#9ea3b4',
                 },
                 {
-                  offset: 1,
-                  color: 'rgba(33, 150, 243, 0.1)',
+                  offset: 0,
+                  color: 'rgba(158, 163, 180, 0.1)',
                 },
               ]),
             },
           },
-        },
-        {
-          name: 'VIEWS',
-          id: 'VIEWS',
-          type: 'pie',
-          radius: [45, 40],
-          center: [80, 80],
-          avoidLabelOverlap: false,
-          hoverOffset: 0,
-          labelLine: {
+          axisLine: {
             show: false,
           },
-          label: {
-            position: 'center',
-            formatter: '{c|{c}}\n {d|{d}%} \n {a|{a}}',
-            rich: {
-              d: {
-                fontSize: 22,
-                color: '#2196f3',
-                padding: [0, 0, -5, 0],
-              },
-              c: {
-                fontSize: 22,
-                fontWeight: 700,
-                color: '#fff',
-                padding: [0, 0, 0, 160],
-              },
-              a: {
-                fontSize: 16,
-                color: '#9ca1b2',
-                padding: [0, 0, 0, 160],
-              },
-            },
-          },
-          data: [
-            {
-              value: 0,
-              name: 'percent',
-            },
-            {
-              value: 0,
-              name: 'empty',
-              label: {
-                show: false,
-              },
-              labelLine: {
-                show: false,
-              },
-            },
-          ],
-        },
-        {
-          name: 'VISITORS',
-          id: 'VISITORS',
-          type: 'pie',
-          radius: [45, 40],
-          center: [330, 80],
-          avoidLabelOverlap: false,
-          hoverOffset: 0,
-          labelLine: {
+          axisTick: {
             show: false,
           },
-          label: {
-            position: 'center',
-            formatter: '{c|{c}}\n {d|{d}%} \n {a|{a}}',
-            rich: {
-              d: {
-                fontSize: 22,
-                color: '#2196f3',
-                padding: [0, 0, -5, 0],
-              },
-              c: {
-                fontSize: 22,
-                fontWeight: 700,
-                color: '#fff',
-                padding: [0, 0, 0, 160],
-              },
-              a: {
-                fontSize: 16,
-                color: '#9ca1b2',
-                padding: [0, 0, 0, 180],
+          axisLabel: {
+            inside: true,
+            color: '#fff',
+          },
+        },
+        yAxis: {
+          type: 'value',
+          show: false,
+          min: 0,
+          max: Math.max(dataSum),
+        },
+        series: [
+          {
+            name: 'SUM',
+            id: 'SUM',
+            type: 'line',
+            smooth: true,
+            data: dataSum,
+            lineStyle: {
+              color: '#2196f3',
+              width: 4,
+            },
+            symbolSize: 12,
+            itemStyle: {
+              color: '#fff',
+              borderWidth: 4,
+              borderColor: '#2196f3',
+            },
+            areaStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: '#2196f3',
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgba(33, 150, 243, 0.1)',
+                  },
+                ]),
               },
             },
           },
-          data: [
-            {
-              value: 0,
-              name: 'percent',
+          {
+            name: 'VIEWS',
+            id: 'VIEWS',
+            type: 'pie',
+            avoidLabelOverlap: false,
+            hoverOffset: 0,
+            labelLine: {
+              show: false,
             },
-            {
-              value: 0,
-              name: 'empty',
-              label: {
-                show: false,
-              },
-              labelLine: {
-                show: false,
+            label: {
+              position: 'center',
+              rich: {
+                d: {
+                  color: '#2196f3',
+                },
+                c: {
+                  fontWeight: 700,
+                  color: '#fff',
+                },
+                a: {
+                  color: '#9ca1b2',
+                },
               },
             },
-          ],
+            data: [
+              {
+                value: 0,
+                name: 'percent',
+              },
+              {
+                value: 0,
+                name: 'empty',
+                label: {
+                  show: false,
+                },
+                labelLine: {
+                  show: false,
+                },
+              },
+            ],
+          },
+          {
+            name: 'VISITORS',
+            id: 'VISITORS',
+            type: 'pie',
+            avoidLabelOverlap: false,
+            hoverOffset: 0,
+            labelLine: {
+              show: false,
+            },
+            label: {
+              position: 'center',
+              rich: {
+                d: {
+                  color: '#2196f3',
+                },
+                c: {
+                  fontWeight: 700,
+                  color: '#fff',
+                },
+                a: {
+                  color: '#9ca1b2',
+                },
+              },
+            },
+            data: [
+              {
+                value: 0,
+                name: 'percent',
+              },
+              {
+                value: 0,
+                name: 'empty',
+                label: {
+                  show: false,
+                },
+                labelLine: {
+                  show: false,
+                },
+              },
+            ],
+          },
+          {
+            name: 'IMPRESSIONS',
+            id: 'IMPRESSIONS',
+            type: 'pie',
+            avoidLabelOverlap: false,
+            hoverOffset: 0,
+            labelLine: {
+              show: false,
+            },
+            label: {
+              position: 'center',
+              rich: {
+                d: {
+                  color: '#2196f3',
+                },
+                c: {
+                  fontWeight: 700,
+                  color: '#fff',
+                },
+                a: {
+                  color: '#9ca1b2',
+                },
+              },
+            },
+            data: [
+              {
+                value: 0,
+                name: 'percent',
+              },
+              {
+                value: 0,
+                name: 'empty',
+                label: {
+                  show: false,
+                },
+                labelLine: {
+                  show: false,
+                },
+              },
+            ],
+          },
+        ],
+      },
+      media: [
+        // default
+        {
+          option: {
+            xAxis: {
+              axisLabel: {
+                fontSize: 16,
+                margin: 20,
+              },
+            },
+            series: [
+              {
+                name: 'VIEWS',
+                radius: [45, 40],
+                center: [80, 80],
+                label: {
+                  formatter: '{c|{c}}\n {d|{d}%} \n {a|{a}}',
+                  rich: {
+                    d: {
+                      fontSize: 22,
+                      padding: [0, 0, -5, 0],
+                    },
+                    c: {
+                      fontSize: 22,
+                      padding: [0, 0, 0, 160],
+                    },
+                    a: {
+                      fontSize: 16,
+                      padding: [0, 0, 0, 160],
+                    },
+                  },
+                },
+              },
+              {
+                name: 'VISITORS',
+                radius: [45, 40],
+                center: [330, 80],
+                label: {
+                  formatter: '{c|{c}}\n {d|{d}%} \n {a|{a}}',
+                  rich: {
+                    d: {
+                      fontSize: 22,
+                      padding: [0, 0, -5, 0],
+                    },
+                    c: {
+                      fontSize: 22,
+                      padding: [0, 0, 0, 160],
+                    },
+                    a: {
+                      fontSize: 16,
+                      padding: [0, 0, 0, 180],
+                    },
+                  },
+                },
+              },
+              {
+                name: 'IMPRESSIONS',
+                radius: [45, 40],
+                center: [560, 80],
+                label: {
+                  formatter: '{c|{c}}\n {d|{d}%} \n {a|{a}}',
+                  rich: {
+                    d: {
+                      fontSize: 22,
+                      padding: [0, 0, -5, 0],
+                    },
+                    c: {
+                      fontSize: 22,
+                      padding: [0, 0, 0, 160],
+                    },
+                    a: {
+                      fontSize: 16,
+                      padding: [0, 0, 0, 220],
+                    },
+                  },
+                },
+              },
+            ],
+          },
         },
         {
-          name: 'IMPRESSIONS',
-          id: 'IMPRESSIONS',
-          type: 'pie',
-          radius: [45, 40],
-          center: [560, 80],
-          avoidLabelOverlap: false,
-          hoverOffset: 0,
-          labelLine: {
-            show: false,
+          query: {
+            maxWidth: 728,
           },
-          label: {
-            position: 'center',
-            formatter: '{c|{c}}\n {d|{d}%} \n {a|{a}}',
-            rich: {
-              d: {
-                fontSize: 22,
-                color: '#2196f3',
-                padding: [0, 0, -5, 0],
-              },
-              c: {
-                fontSize: 22,
-                fontWeight: 700,
-                color: '#fff',
-                padding: [0, 0, 0, 160],
-              },
-              a: {
-                fontSize: 16,
-                color: '#9ca1b2',
-                padding: [0, 0, 0, 220],
+          option: {
+            xAxis: {
+              axisLabel: {
+                fontSize: 12,
+                margin: 10,
               },
             },
+            series: [
+              {
+                name: 'VIEWS',
+                radius: [30, 25],
+                center: ['20%', 50],
+                label: {
+                  formatter: '{d|{d}%}\n {c|{c}}\n {a|{a}}',
+                  rich: {
+                    d: {
+                      fontSize: 16,
+                      padding: [-145, 0, -5, 0],
+                    },
+                    c: {
+                      fontSize: 16,
+                      padding: [0, 0, 110, 0],
+                    },
+                    a: {
+                      fontSize: 10,
+                      padding: [0, 0, 5, 0],
+                    },
+                  },
+                },
+              },
+              {
+                name: 'VISITORS',
+                radius: [30, 25],
+                center: ['50%', 50],
+                label: {
+                  formatter: '{d|{d}%}\n {c|{c}}\n {a|{a}}',
+                  rich: {
+                    d: {
+                      fontSize: 16,
+                      padding: [-145, 0, -5, 0],
+                    },
+                    c: {
+                      fontSize: 16,
+                      padding: [0, 0, 110, 0],
+                    },
+                    a: {
+                      fontSize: 10,
+                      padding: [0, 0, 5, 0],
+                    },
+                  },
+                },
+              },
+              {
+                name: 'IMPRESSIONS',
+                radius: [30, 25],
+                center: ['80%', 50],
+                label: {
+                  formatter: '{d|{d}%}\n {c|{c}}\n {a|{a}}',
+                  rich: {
+                    d: {
+                      fontSize: 16,
+                      padding: [-145, 0, -5, 0],
+                    },
+                    c: {
+                      fontSize: 16,
+                      padding: [0, 0, 110, 0],
+                    },
+                    a: {
+                      fontSize: 10,
+                      padding: [0, 0, 5, 0],
+                    },
+                  },
+                },
+              },
+            ],
           },
-          data: [
-            {
-              value: 0,
-              name: 'percent',
-            },
-            {
-              value: 0,
-              name: 'empty',
-              label: {
-                show: false,
-              },
-              labelLine: {
-                show: false,
-              },
-            },
-          ],
         },
       ],
     };

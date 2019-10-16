@@ -5,11 +5,13 @@
   padding-left: 103px;
   padding-top: 96px;
   @include media('<=ultrawidescreen') {
-    height: 120vh;
+    height: auto;
   }
   @include media('<=desktop') {
-    height: 150vh;
     padding-left: 0;
     padding-top: 60px;
+  }
+  @include media('<=phone') {
+    padding-top: 100px;
   }
 }
