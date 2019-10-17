@@ -1,16 +1,21 @@
 .workflow-area {
+  overflow: auto;
   position: relative;
   width: 100%;
   height: 100%;
   padding: 0 0 20px;
   &__content {
+    height: 100%;
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
   }
 }
 .workflow-column {
   flex-shrink: 0;
   width: 292px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   &:not(:last-child) {
     margin-right: 23px;
   }
@@ -64,11 +69,37 @@
   }
   &__projects-list {
     @extend %listreset;
+    flex-grow: 1;
   }
   .project-element {
+    position: relative;
     background-color: map-get($colors, 'midnight-light');
+    border-radius: 5px;
+    cursor: grab;
     &:not(:last-child) {
       margin-bottom: 23px;
     }
+    .draggable--is-dragging & {
+      cursor: grabbing;
+    }
+    &.draggable-mirror {
+      z-index: 1;
+    }
+    &.draggable-source--is-dragging {
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: map-get($colors, 'midnight-dark');
+        border: 1px dashed rgba(map-get($colors, 'grey-medium'), 0.3);
+        border-radius: 5px;
+      }
+    }
   }
+}
+.draggable--is-dragging {
+  cursor: grabbing;
 }

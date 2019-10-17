@@ -3,7 +3,8 @@
     "jQuery": true,
     "$": true,
     "echarts": true,
-    "PerfectScrollbar": true
+    "PerfectScrollbar": true,
+    "Draggable": true
   },
   "env": {
     "browser": true,
