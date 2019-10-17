@@ -1,0 +1,16 @@
+.ps .ps__rail-x {
+  border-radius: 6px;
+  &.ps--clicking,
+  &:focus,
+  &:hover,
+  &.ps--clicking,
+  &:focus,
+  &:hover {
+    background-color: rgba(map-get($colors, 'grey-medium'), 0.3);
+  }
+  &.ps--clicking .ps__thumb-x,
+  &:focus > .ps__thumb-x,
+  &:hover > .ps__thumb-x {
+    background-color: map-get($colors, 'blue-medium');
+  }
+}
