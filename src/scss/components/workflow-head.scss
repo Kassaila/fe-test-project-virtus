@@ -21,27 +21,29 @@
     color: map-get($colors, 'white');
     margin: 0 20px 0 auto;
   }
-  .select {
-    color: map-get($colors, 'white');
-  }
-  .select-styled {
-    border: solid 1px rgba(map-get($colors, 'white'), 0.3);
-    &:hover {
+  .custom-select {
+    &__wrapper {
       color: map-get($colors, 'white');
-      &:after {
+    }
+    &_styled {
+      border: solid 1px rgba(map-get($colors, 'white'), 0.3);
+      &:hover {
+        color: map-get($colors, 'white');
+        &:after {
+          border-color: map-get($colors, 'white');
+        }
+      }
+      &:active,
+      &.active {
         border-color: map-get($colors, 'white');
       }
+      &:after {
+        border-color: transparent map-get($colors, 'white')
+          map-get($colors, 'white') transparent;
+      }
     }
-    &:active,
-    &.active {
-      border-color: map-get($colors, 'white');
+    &__options {
+      background-color: rgba(map-get($colors, 'blue-medium'), 0.9);
     }
-    &:after {
-      border-color: transparent map-get($colors, 'white')
-        map-get($colors, 'white') transparent;
-    }
-  }
-  .select-options {
-    background-color: rgba(map-get($colors, 'blue-medium'), 0.9);
   }
 }

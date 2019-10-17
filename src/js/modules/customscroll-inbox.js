@@ -1,14 +1,15 @@
 const customscrollInbox = () => {
   const WRAPPER = '.inbox-block__wrapper';
-
-  if (!$(WRAPPER)) return false;
+  const option = {
+    wheelSpeed: 2,
+    wheelPropagation: true,
+    minScrollbarLength: 20,
+  };
 
   const init = () => {
-    const pscroll = new PerfectScrollbar(WRAPPER, {
-      wheelSpeed: 2,
-      wheelPropagation: true,
-      minScrollbarLength: 20,
-    });
+    if (!$(WRAPPER).length) return false;
+
+    const pscroll = new PerfectScrollbar(WRAPPER, option);
 
     return pscroll;
   };

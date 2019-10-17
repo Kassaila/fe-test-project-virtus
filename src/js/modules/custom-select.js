@@ -1,16 +1,16 @@
 const customSelect = () => {
-  if (!$('.custom-select')) return false;
+  const $select = $('.custom-select');
 
-  const init = () => {
-    $('.custom-select').each(function () {
+  const _createWrapper = () => {
+    $select.each(function () {
       const $this = $(this);
       const numberOfOptions = $(this).children('option').length;
 
-      $this.addClass('select-hidden');
-      $this.wrap('<div class="select"></div>');
-      $this.after('<div class="select-styled"></div>');
+      $this.addClass('custom-select_hidden');
+      $this.wrap('<div class="custom-select__wrapper"></div>');
+      $this.after('<div class="custom-select_styled"></div>');
 
-      const $styledSelect = $this.next('div.select-styled');
+      const $styledSelect = $this.next('div.custom-select_styled');
       $styledSelect.text(
         $this
           .children('option')
@@ -19,7 +19,7 @@ const customSelect = () => {
       );
 
       const $list = $('<ul />', {
-        class: 'select-options',
+        class: 'custom-select__options',
       }).insertAfter($styledSelect);
 
       for (let i = 0; i < numberOfOptions; i += 1) {
@@ -37,34 +37,42 @@ const customSelect = () => {
 
       const $listItems = $list.children('li');
 
-      $styledSelect.click(function (e) {
+      $styledSelect.on('click', function (e) {
         e.stopPropagation();
-        $('div.select-styled.active')
+        $('div.custom-select_styled.active')
           .not(this)
           .each(function () {
             $(this)
               .removeClass('active')
-              .next('ul.select-options')
+              .next('ul.custom-select__options')
               .hide();
           });
         $(this)
           .toggleClass('active')
-          .next('ul.select-options')
+          .next('ul.custom-select__options')
           .toggle();
       });
 
-      $listItems.click(function (e) {
+      $listItems.on('click', function (e) {
         e.stopPropagation();
         $styledSelect.text($(this).text()).removeClass('active');
         $this.val($(this).attr('rel'));
         $list.hide();
       });
 
-      $(document).click(() => {
+      $(document).on('click', () => {
         $styledSelect.removeClass('active');
         $list.hide();
       });
     });
+  };
+
+  const init = () => {
+    if (!$select.length) return false;
+
+    _createWrapper();
+
+    return true;
   };
 
   return {
