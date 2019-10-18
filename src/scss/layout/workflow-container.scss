@@ -2,4 +2,7 @@
   width: 100%;
   height: calc(100% - 97px);
   padding: 60px 20px 20px 60px ;
+  @include media('<ultrawidescreen') {
+    padding: 20px ;
+  }
 }

@@ -8,7 +8,7 @@ import salesChart from './modules/sales-chart';
 import customSelect from './modules/custom-select';
 import datePicker from './modules/date-picker';
 import draggableWorkflow from './modules/draggable-workflow';
-import customScroll from './modules/customscroll';
+import customScroll from './modules/custom-scroll';
 
 (($) => {
   // When DOM is ready

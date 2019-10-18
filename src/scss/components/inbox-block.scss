@@ -34,7 +34,7 @@
 .message-element {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   border-bottom: 1px solid map-get($colors, 'grey-dark');
   padding: 24px 20px 20px;
   @include media('<=tablet') {

@@ -42,8 +42,6 @@ const draggableWorkflow = () => {
       dropzone: '.workflow-column__projects-list',
       mirror: {
         constrainDimensions: true,
-        cursorOffsetX: 100,
-        cursorOffsetY: 100,
       },
       scrollable: {
         speed: 10,
@@ -60,7 +58,7 @@ const draggableWorkflow = () => {
   };
 
   const init = () => {
-    if (!scrollArea.length) return false;
+    if (!scrollArea.length || 'ontouchstart' in document.documentElement) return false;
 
     _counting();
     _draggable();
