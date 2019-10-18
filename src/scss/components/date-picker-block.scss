@@ -14,7 +14,7 @@
       background-color: transparent;
       border: none;
       border-radius: 0;
-      @include media('<=tablet') {
+      @include media('<tablet') {
         font-size: 14px;
       }
       &-inline {
@@ -24,12 +24,12 @@
         background-color: map-get($colors, 'midnight-light');
         border: none;
         padding: 30px;
-        @include media('<=tablet') {
+        @include media('<tablet') {
           padding: 15px;
         }
         &-title {
           @include animate(opacity);
-          font: 700 24px map-get($base, 'base-font-family');
+          font: 24px map-get($base, 'base-font-family');
           letter-spacing: 0.49px;
           color: map-get($colors, 'white');
           padding: 0;
@@ -37,7 +37,7 @@
             background-color: transparent;
             opacity: 0.8;
           }
-          @include media('<=tablet') {
+          @include media('<tablet') {
             font-size: 18px;
           }
         }
@@ -54,7 +54,7 @@
         height: calc(100% - 92px);
         display: flex;
         align-items: center;
-        @include media('<=tablet') {
+        @include media('<tablet') {
           height: calc(100% - 62px);
         }
       }

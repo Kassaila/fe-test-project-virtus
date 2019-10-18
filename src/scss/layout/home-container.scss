@@ -27,7 +27,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: minmax(370px, 1.2fr) 350px 350px 350px;
   }
-  @include media('<=tablet') {
+  @include media('<tablet') {
     grid-template-areas:
       'statistic'
       'sales'
