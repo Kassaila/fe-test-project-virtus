@@ -70,6 +70,7 @@
   &__projects-list {
     @extend %listreset;
     flex-grow: 1;
+    outline: none;
   }
   .project-element {
     position: relative;

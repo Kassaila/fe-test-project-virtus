@@ -8,7 +8,7 @@ import salesChart from './modules/sales-chart';
 import customSelect from './modules/custom-select';
 import datePicker from './modules/date-picker';
 import draggableWorkflow from './modules/draggable-workflow';
-// import customscrollWorkflow from './modules/customscroll-workflow';
+import customScroll from './modules/customscroll';
 
 (($) => {
   // When DOM is ready
@@ -18,7 +18,7 @@ import draggableWorkflow from './modules/draggable-workflow';
     salesChart.init();
     customSelect.init();
     datePicker.init();
-    // customscrollWorkflow.init();
     draggableWorkflow.init();
+    customScroll.init();
   });
 })(jQuery);

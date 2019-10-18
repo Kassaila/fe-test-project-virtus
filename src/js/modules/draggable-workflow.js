@@ -1,4 +1,5 @@
 const draggableWorkflow = () => {
+  const scrollArea = document.querySelectorAll('.workflow-area');
   const projectLists = document.querySelectorAll('.workflow-column__projects-list');
   const PROJECT = '.project-element';
 
@@ -36,22 +37,35 @@ const draggableWorkflow = () => {
   };
 
   const _draggable = () => {
-    const draggable = new Draggable.Sortable(projectLists, {
+    const instance = new Draggable.Sortable(projectLists, {
       draggable: PROJECT,
       dropzone: '.workflow-column__projects-list',
       mirror: {
         constrainDimensions: true,
+        cursorOffsetX: 100,
+        cursorOffsetY: 100,
+      },
+      scrollable: {
+        speed: 10,
+        sensitivity: 30,
+        scrollableElements: [
+          ...scrollArea,
+        ],
       },
     });
 
-    draggable.on('sortable:stop', _counting);
+    instance.on('drag:stop', _counting);
 
-    return draggable;
+    return instance;
   };
 
   const init = () => {
+    if (!scrollArea.length) return false;
+
     _counting();
     _draggable();
+
+    return true;
   };
 
   return {
