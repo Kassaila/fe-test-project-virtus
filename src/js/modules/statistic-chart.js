@@ -70,6 +70,7 @@ const statisticChart = () => {
         },
         axisLabel: {
           inside: true,
+          fontFamily: 'Montserrat',
           color: '#fff',
         },
       },
@@ -121,6 +122,7 @@ const statisticChart = () => {
             show: false,
           },
           label: {
+            fontFamily: 'Montserrat',
             position: 'center',
             rich: {
               d: {
@@ -162,6 +164,7 @@ const statisticChart = () => {
             show: false,
           },
           label: {
+            fontFamily: 'Montserrat',
             position: 'center',
             rich: {
               d: {
@@ -203,6 +206,7 @@ const statisticChart = () => {
             show: false,
           },
           label: {
+            fontFamily: 'Montserrat',
             position: 'center',
             rich: {
               d: {
