@@ -14,12 +14,18 @@ const customSelect = () => {
       $styledSelect.text($this.val());
 
       $this.on('mousedown', () => {
-        $styledSelect.addClass('active');
+        setTimeout(() => $styledSelect.addClass('active'), 100);
+      });
+
+      $(document).on('mousedown', () => {
+        if ($styledSelect.hasClass('active')) {
+          setTimeout(() => $styledSelect.removeClass('active'), 50);
+        }
       });
 
       $this.on('change', () => {
         $styledSelect.text($this.val());
-        setTimeout(() => $styledSelect.removeClass('active'), 100);
+        setTimeout(() => $styledSelect.removeClass('active'), 50);
       });
     });
   };
