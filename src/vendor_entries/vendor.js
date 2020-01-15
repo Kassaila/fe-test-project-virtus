@@ -10,6 +10,6 @@ module.exports = {
     './node_modules/@shopify/draggable/lib/es5/draggable.bundle.js'
   ],
   es6: [
-    // './node_modules/@shopify/draggable/lib/draggable.bundle.js',
+    // './node_modules/your-plugin/es6/your-plugin.js',
   ]
 };
