@@ -9,28 +9,27 @@ const postcss = require('gulp-postcss');
 const cssimport = require('postcss-import');
 const cssnano = require('cssnano');
 const rename = require('gulp-rename');
-const notify = require('gulp-notify');
+
+const notifier = require('../helpers/notifier');
+const global = require('../gulp-config.js');
 
 sass.compiler = require('sass');
 
-module.exports = function (options) {
+module.exports = function () {
+  const production = global.isProduction();
+  const vendorFileName = production ? global.file.vendorStylesMin : global.file.vendorStyles;
   const plugins = [
     cssimport(),
   ];
-  const errorConfig = {
-    title: 'Sass compiling error',
-    icon: './sys_icon/error_icon.png',
-    wait: true,
-  };
 
-  options.isProduction ? plugins.push(cssnano()) : false;
+  production ? plugins.push(cssnano()) : null;
 
-  return () => {
-    return gulp.src(`./${options.src}/vendor_entries/${options.vendorScss}`)
-      .pipe(rename(options.vendorScssMin))
+  return (done) => {
+    return gulp.src(`./${global.folder.src}/vendor_entries/${global.file.vendorStylesSrc}`)
+      .pipe(rename(vendorFileName))
       .pipe(sass.sync())
-      .on('error', notify.onError(errorConfig))
+      .on('error', (error) => notifier.error(error.message, 'Vendor Sass compiling error', done))
       .pipe(postcss(plugins))
-      .pipe(gulp.dest(`./${options.dest}/css`));
+      .pipe(gulp.dest(`./${global.folder.dev}/css`));
   };
 };
