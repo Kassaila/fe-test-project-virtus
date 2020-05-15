@@ -5,26 +5,28 @@
 
 const fs = require('fs');
 
+const global = require('../gulp-config.js');
+
 module.exports = function (options) {
 
   return () => {
-    // If index.html exist - open it, else show folder
-    let listDirectory = fs.existsSync(options.mainHtml) ? false : true;
-
-    options.browserSync.init({
+    options.browserSyncInstance.init({
       notify: false,
+      injectChanges: true,
+      minify: false,
       server: {
-        baseDir: './',
-        directory: listDirectory
+        baseDir: global.folder.dev,
+        // If index.html exist - open it, else show folder
+        directory: !fs.existsSync(`./${global.folder.dev}/${global.file.mainHtml}`),
       },
       snippetOptions: {
         // Provide a custom Regex for inserting the snippet
         rule: {
           match: /$/i,
-          fn: (snippet, match) => snippet + match
+          fn: (snippet, match) => snippet + match,
         }
       },
-      port: 8080
+      port: 8080,
     });
   };
 };

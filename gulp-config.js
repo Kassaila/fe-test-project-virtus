@@ -1,83 +1,87 @@
 module.exports = {
+  task: {
+    lintHtml: 'lint-html',
+    lintJs: 'lint-js',
+    fixJs: 'fix-js',
+    buildHtml: 'build-html',
+    buildJs: 'build-js',
+    buildJsVendors: 'build-js-vendors',
+    buildStyles: 'build-styles',
+    buildStylesCustom: 'build-styles-custom',
+    buildStylesVendors: 'build-styles-vendors',
+    buildImages: 'build-images',
+    cleanBuild: 'clean-build',
+    copyFiles: 'copy-files',
+    copyFilesProd: 'copy-files-production',
+    browserSync: 'browser-sync',
+    watch: 'watch',
+    build: 'build',
+  },
   folder: {
     tasks: 'tasks',
     src: 'src',
-    build: 'assets',
-    prod: 'production'
+    dev: 'assets',
+    build: 'production',
+    temp: '.temp',
   },
   file: {
     mainHtml: 'index.html',
     mainJs: 'app.js',
+    mainJsMin: 'app.min.js',
     vendorJs: 'vendor.js',
     vendorJsMin: 'vendor.min.js',
-    mainScss: 'styles.scss',
-    mainScssMin: 'styles.min.css',
-    vendorScss: 'vendor.scss',
-    vendorScssMin: 'vendor.min.css',
+    vendorJsComp: 'vendor-compile.js',
+    vendorJsTemp: 'vendor.temp.js',
+    mainStylesSrc: 'styles.scss',
+    mainStyles: 'styles.css',
+    mainStylesMin: 'styles.min.css',
+    vendorStylesSrc: 'vendor.scss',
+    vendorStyles: 'vendor.css',
+    vendorStylesMin: 'vendor.min.css',
   },
-  fileInclude: {
+  buildHtml: {
     templates: 'src/html/templates',
-    dest: './',
   },
-  task: {
-    htmlHint: 'html-hint',
-    esLint: 'es-lint',
-    buildCustomJs: 'build-custom-js',
-    buildJsVendors: 'build-js-vendors',
-    buildSass: 'build-sass',
-    buildSassFiles: 'compile-sass-files',
-    buildStylesVendors: 'build-styles-vendors',
-    imageMin: 'image-min',
-    cleanProd: 'clean-production',
-    cleanBuild: 'clean-build',
-    copyFolders: 'copy-folders',
-    copyFoldersProduction: 'copy-folders-production',
-    fileInclude: 'file-include',
-    browserSync: 'browser-sync-server',
-    watch: 'watch',
+  buildStyles: {
+    // Sorting type css media queries: 'desktop-first' || 'mobile-first'
+    sortType: 'desktop-first',
   },
-  autoprefixer: {
-    browserslist: [
-      '.browserslistrc'
-    ]
+  buildImages: {
+    imageExtensions: 'jpg,jpeg,png,svg,gif,ico',
+    isImageMin: false,
   },
-  imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
-  getPathesForSassCompiling: function () {
+  error: {
+    sound: true,
+    title: '< SYSTEM ERROR >',
+    icon: './system_files/icons/error_icon.png',
+    wait: true,
+  },
+  getFilesForStylesCustom() {
     return {
       files: [],
-      isGcmq: false
-     };
+      isGcmq: false,
+    };
   },
-  getPathesToCopyForProduction: function() {
-    return [
-      './**/*',
-      '!.*',
-      '!.*/**',
-      '.htaccess',
-      `!${this.folder.prod}`,
-      `!${this.folder.build}/images/info.txt`,
-      `!{${this.folder.src},${this.folder.src}/**}`,
-      '!{tasks,tasks/**}',
-      '!{node_modules,node_modules/**}',
-      '!CONTRIBUTING.md',
-      '!gulpfile.js',
-      '!gulp-config.js',
-      '!LICENSE',
-      '!package.json',
-      '!package-lock.json',
-      '!README.md',
-      '!readme.txt',
-      '!{sys_icon,sys_icon/**}'
-    ];
-  },
-  getPathesToCopy: function() {
+  getFilesToCopy() {
     return [
       `./${this.folder.src}/**`,
       `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
       `!{${this.folder.src}/js,${this.folder.src}/js/**}`,
       `!{${this.folder.src}/html,${this.folder.src}/html/**}`,
       `!{${this.folder.src}/scss,${this.folder.src}/scss/**}`,
-      `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`
+      `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`,
     ];
+  },
+  getFilesToCopyProd() {
+    return [
+      `./${this.folder.dev}/**`,
+      '.htaccess',
+    ];
+  },
+  isProduction() {
+    return process.argv[process.argv.length - 1] === this.task.build;
+  },
+  isFixJs() {
+    return process.argv[process.argv.length - 1] === this.task.fixJs;
   }
 };

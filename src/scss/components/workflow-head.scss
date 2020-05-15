@@ -8,8 +8,6 @@
   @include media('<=desktop') {
     padding: 10px 15px;
   }
-  @include media('<tablet') {
-  }
   &__quantity {
     font-size: 18px;
     letter-spacing: 0.36px;

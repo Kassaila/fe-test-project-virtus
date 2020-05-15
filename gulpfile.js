@@ -1,7 +1,7 @@
 /**
  *
  *  Web Starter Kit
- *  Copyright (c) 2017 JustCoded.
+ *  Copyright (c) 2020 JustCoded.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -23,262 +23,139 @@
  *
  */
 
-(() => {
-  'use strict';
+'use strict';
 
-  const cfg = require('./gulp-config.js');
-  const gulp = require('gulp');
-  const del = require('del');
-  const path = require('path');
-  const browserSync = require('browser-sync').create();
+const gulp = require('gulp');
+const browserSyncInstance = require('browser-sync').create();
 
-  /**
-   * Require gulp task from file
-   * @param  {string} taskName     Task name
-   * @param  {String} path         Path to task file
-   * @param  {Object} options      Options for task
-   * @param  {Array}  dependencies Task dependencies
-   */
-  function requireTask(taskName, path, options, dependencies) {
-    let settings = options || {};
-    const taskFunction = function (callback) {
-      if (settings.checkProduction) {
-        settings.isProduction = process.argv[process.argv.length - 1] === 'build';
-      }
+const global = require('./gulp-config.js');
 
-      let task = require(path + taskName + '.js').call(this, settings);
+/**
+ * Clean build folders
+ */
+gulp.task(global.task.cleanBuild, require('./tasks/clean-build')());
 
-      return task(callback);
-    };
+/**
+ * Lint HTML
+ */
+gulp.task(global.task.lintHtml, require('./tasks/lint-html')());
 
-    settings.taskName = taskName;
+/**
+ * Template HTML
+ */
+gulp.task(global.task.buildHtml, require('./tasks/build-html')());
 
-    if (!Array.isArray(dependencies)) {
-      gulp.task(taskName, taskFunction);
-    } else if (dependencies.length === 1) {
-      gulp.task(taskName, gulp.series(dependencies[0], taskFunction));
-    } else {
-      gulp.task(taskName, gulp.series(dependencies, taskFunction));
-    }
-  }
+/**
+ * Build styles for application
+ */
+gulp.task(global.task.buildStyles, require('./tasks/build-styles')());
 
-  /**
-   * Remove image(s) from build folder if corresponding
-   * images were deleted from source folder
-   * @param  {Object} event    Event object
-   * @param  {String} src      Name of the source folder
-   * @param  {String} dest     Name of the destination folder
-   */
-  function deleteFile(file, src, dest) {
-    let fileName = file.path.toString().split('/').pop();
-    let fileEventWord = file.event == 'unlink' ? 'deleted' : file.event;
+/**
+ * Build styles custom files listed in the config
+ */
+gulp.task(global.task.buildStylesCustom, require('./tasks/build-styles-custom')());
 
-    let filePathFromSrc = path.relative(path.resolve(src), file.path);
-    let destFilePath = path.resolve(dest, filePathFromSrc);
+/**
+ * Build styles for vendor
+ */
+gulp.task(global.task.buildStylesVendors, require('./tasks/build-styles-vendors')());
 
-    try {
-      del.sync(destFilePath);
-      console.log(` \u{1b}[32m${fileEventWord}: ${fileName}\u{1b}[0m`);
-    } catch (error) {
-      console.log(` \u{1b}[31mFile has already deleted\u{1b}[0m`);
-    }
-  }
+/**
+ * Lint JS
+ */
+gulp.task(global.task.lintJs, require('./tasks/lint-js')());
 
-  /**
-   * template HTML
-   */
-  requireTask(`${cfg.task.fileInclude}`, `./${cfg.folder.tasks}/`, {
-    templates: cfg.fileInclude.templates,
-    dest: cfg.fileInclude.dest
-  });
+/**
+ * Fix JS files
+ */
+gulp.task(global.task.fixJs, require('./tasks/lint-js')());
 
-  /**
-   * Hint HTML
-   */
-  requireTask(`${cfg.task.htmlHint}`, `./${cfg.folder.tasks}/`);
+/**
+ * Build JS
+ */
+gulp.task(global.task.buildJs, require('./tasks/build-js')());
 
-  /**
-   * Lint ES
-   */
-  requireTask(`${cfg.task.esLint}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src
-  });
+/**
+ * Build JS vendor (concatenate vendors array)
+ */
+gulp.task(global.task.buildJsVendors, require('./tasks/build-js-vendors')());
 
-  /**
-   * Build custom js
-   */
-  requireTask(`${cfg.task.buildCustomJs}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
-    dest: cfg.folder.build,
-    mainJs: cfg.file.mainJs,
-    checkProduction: true
-  });
+/**
+ * Copy & minify images
+ */
+gulp.task(global.task.buildImages, require('./tasks/build-images')());
 
-  /**
-   * Build js vendor (concatenate vendors array)
-   */
-  requireTask(`${cfg.task.buildJsVendors}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
-    dest: cfg.folder.build,
-    vendorJs: cfg.file.vendorJs,
-    vendorJsMin: cfg.file.vendorJsMin,
-    checkProduction: true
-  });
+/**
+ * Copy folders to the build folder
+ */
+gulp.task(global.task.copyFiles, require('./tasks/copy-files')());
 
-  /**
-   * Build styles for application from SASS
-   */
-  requireTask(`${cfg.task.buildSass}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
-    dest: cfg.folder.build,
-    mainScss: cfg.file.mainScss,
-    mainScssMin: cfg.file.mainScssMin,
-    checkProduction: true
-  });
+/**
+ * Copy folders to the production folder
+ */
+gulp.task(global.task.copyFilesProd, require('./tasks/copy-files-production')());
 
-  /**
-   * Compile scss files listed in the config
-   */
-  requireTask(`${cfg.task.buildSassFiles}`, `./${cfg.folder.tasks}/`, {
-    sassFilesInfo: cfg.getPathesForSassCompiling(),
-    dest: cfg.folder.build
-  });
+/**
+ * Start browserSync server
+ */
+gulp.task(global.task.browserSync, require('./tasks/browser-sync-server')({ browserSyncInstance }));
 
-  /**
-   * Build styles for vendor from SASS
-   */
-  requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
-    dest: cfg.folder.build,
-    vendorScss: cfg.file.vendorScss,
-    vendorScssMin: cfg.file.vendorScssMin,
-    checkProduction: true
-  });
+/**
+ * Watch for file changes
+ */
+gulp.task(global.task.watch, require('./tasks/watch')({ browserSyncInstance }));
 
-  /**
-   * Minify images
-   */
-  requireTask(`${cfg.task.imageMin}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
-    dest: cfg.folder.build
-  });
-
-  /**
-   * Clean build folder
-   */
-  requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.build
-  });
-
-  /**
-   * Clean production folder
-   */
-  requireTask(`${cfg.task.cleanProd}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.prod
-  });
-
-
-  /**
-   * Copy folders to the build folder
-   */
-  requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
-    dest: cfg.folder.build,
-    foldersToCopy: cfg.getPathesToCopy()
-  });
-
-  /**
-   * Copy folders to the production folder
-   */
-  requireTask(`${cfg.task.copyFoldersProduction}`, `./${cfg.folder.tasks}/`, {
-    dest: cfg.folder.prod,
-    foldersToCopy: cfg.getPathesToCopyForProduction()
-  });
-
-  /**
-   * Start browserSync server
-   */
-  requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
-    mainHtml: cfg.file.mainHtml,
-    browserSync: browserSync
-  });
-
-  /**
-   * Watch for file changes
-   */
-  requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
-    sassFilesInfo: cfg.getPathesForSassCompiling(),
-    src: cfg.folder.src,
-    templates: cfg.folder.templates,
-    dest: cfg.folder.build,
-    imageExtensions: cfg.imageExtensions,
-    browserSync: browserSync,
-    deleteFile: deleteFile,
-    tasks: {
-      buildSassFiles: cfg.task.buildSassFiles,
-      buildCustomJs: cfg.task.buildCustomJs,
-      buildSass: cfg.task.buildSass,
-      esLint: cfg.task.esLint,
-      fileInclude: cfg.task.fileInclude,
-      htmlHint: cfg.task.htmlHint,
-      imageMin: cfg.task.imageMin
-    }
-  }, false);
-
-  /**
-   * Default Gulp task
-   */
-  gulp.task('default', gulp.series(
-    cfg.task.cleanBuild,
-    cfg.task.esLint,
-    gulp.parallel(
-      gulp.series(
-        cfg.task.fileInclude,
-        cfg.task.htmlHint,
-      ),
-      gulp.series(
-        cfg.task.buildSass,
-        cfg.task.buildSassFiles,
-        cfg.task.buildStylesVendors,
-      ),
-      gulp.series(
-        cfg.task.buildCustomJs,
-        cfg.task.buildJsVendors,
-      ),
+/**
+ * Develop mode - with browser sync, file watch & live reload
+ */
+gulp.task('default', gulp.series(
+  global.task.cleanBuild,
+  global.task.lintJs,
+  gulp.parallel(
+    gulp.series(
+      global.task.buildHtml,
+      global.task.lintHtml,
     ),
-    cfg.task.imageMin,
-    cfg.task.copyFolders,
-    gulp.parallel(
-      cfg.task.browserSync,
-      cfg.task.watch
-    )
-  ));
+    gulp.series(
+      global.task.buildStyles,
+      global.task.buildStylesCustom,
+      global.task.buildStylesVendors,
+    ),
+    gulp.series(
+      global.task.buildJs,
+      global.task.buildJsVendors,
+    ),
+  ),
+  global.task.buildImages,
+  global.task.copyFiles,
+  gulp.parallel(
+    global.task.browserSync,
+    global.task.watch,
+  ),
+));
 
-  /**
-   * Creating production folder without unnecessary files
-   */
-  gulp.task('build', gulp.series(
-    gulp.parallel(
-      cfg.task.cleanProd,
-      cfg.task.cleanBuild
+/**
+ * Production mode - creating production folder without unnecessary files
+ */
+gulp.task(global.task.build, gulp.series(
+  global.task.cleanBuild,
+  global.task.lintJs,
+  gulp.parallel(
+    gulp.series(
+      global.task.buildHtml,
+      global.task.lintHtml,
     ),
-    cfg.task.esLint,
-    gulp.parallel(
-      gulp.series(
-        cfg.task.fileInclude,
-        cfg.task.htmlHint,
-      ),
-      gulp.series(
-        cfg.task.buildSass,
-        cfg.task.buildSassFiles,
-        cfg.task.buildStylesVendors,
-      ),
-      gulp.series(
-        cfg.task.buildCustomJs,
-        cfg.task.buildJsVendors,
-      ),
+    gulp.series(
+      global.task.buildStyles,
+      global.task.buildStylesCustom,
+      global.task.buildStylesVendors,
     ),
-    cfg.task.imageMin,
-    cfg.task.copyFolders,
-    cfg.task.copyFoldersProduction
-  ), true);
-})();
+    gulp.series(
+      global.task.buildJs,
+      global.task.buildJsVendors,
+    ),
+  ),
+  global.task.buildImages,
+  global.task.copyFiles,
+  global.task.copyFilesProd,
+));
